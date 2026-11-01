@@ -6,31 +6,79 @@
 >
 > **项目背景与我的角色**：来自模拟电路语义标注与版图 handoff 的实践。本人负责问题定义、role taxonomy、证据口径、评测协议与 demo 设计；代码、示例和文档在 AI 辅助下完成。
 
-> 给一个陌生网表一个**可复核的语义层**：端口是什么、器件在做什么、每个 net 属于什么电气类别/结构角色、哪些必须匹配、依据是什么、哪里还需要人确认。
+> 给一个陌生网表一个**可复核的语义层**：它是怎么分层的、端口是什么、器件在做什么、每个 net 属于什么类别/结构角色、哪些必须匹配、依据是什么、哪里还需要人确认。
 
-**30 秒版**：输入一个只有连接和尺寸的 flat SPICE netlist，输出带 evidence / confidence / review 的 ports、devices、nets、blocks 语义层；源网表只读，不确定项显式交给人工复核。
+**30 秒版**：真实输入通常是一个大 .sp：top + 很多 subckt，而不是一个小 cell。NetlistLabel 的思路是**从上到下层层拆解**：先看 top 接口、电源、subckt 实例和控制关系，再下钻到 leaf cell；每个 leaf 输出带 evidence / confidence / review 的语义，最后再聚合回层次结构。当前 v0.2 先跑通 leaf-cell annotation，full-netlist/hierarchy 是下一步。
 
-NetlistLabel 面向开源社区里大量“只有连接关系和尺寸、没有语义”的模拟网表。它不改电路、不改 W/L、不发明规则；它输出一份带证据和置信度的**语义 overlay**，供工程师复核后写回或供下游工具消费。
-
-**语义是契约，名字是渲染。** 原始器件名/net 名永远保留；规范名只是可选建议。
-
-<img src="docs/assets/overview.svg" alt="AnalogNetlistLabel overview" width="100%">
-
-> 输入一个没有语义的网表，输出带 evidence / confidence / review 的语义 overlay。
+<img src="docs/assets/vision.svg" alt="AnalogNetlistLabel top-level design" width="100%">
 
 ## 三分钟看懂
+
+| 你关心 | 回答 |
+| --- | --- |
+| 问题是什么？ | 大网表有 top + 很多 subckt，名字大多无语义；人靠 GUI 和记忆，AI 只看到文本。 |
+| 核心判断？ | 先分解，再标注；port 是每层锚点；结构是证据；允许弃权。 |
+| 方法是什么？ | facts -> ports -> structures -> candidates -> decisions -> review；每个结论带 evidence/confidence。 |
+| 现在做到哪？ | v0.2 先做 leaf-cell annotation：LDO 41/41 MOS、OTA 26/26；full-netlist 尚未实现。 |
+| 下一步？ | full-netlist annotation、subckt selection、跨层聚合；之后 pre-sim / post-sim / mixed-signal / logic。 |
+| 不是什么？ | 不是仿真器、不是版图工具、不是用 LLM 猜标签、不是重命名源网表。 |
+
+## 顶层设计：先分解，再标注
+
+真实输入不是一张 10 个管子的 flat cell：
+
+    large.sp
+      top
+        X1  amp_core
+        X2  bias_gen
+        X3  ldo_loop
+        ...
+      .subckt amp_core ...
+      .subckt bias_gen ...
+      .subckt ldo_loop ...
+
+我们的处理顺序是：
+
+    large .sp
+      -> parse hierarchy / instances / ports
+      -> top-level interface + subckt graph
+      -> decompose: choose subckt/cell
+      -> annotate leaf: ports / devices / nets / blocks / evidence / review
+      -> aggregate: cell semantics -> subckt semantics -> full-netlist graph
+
+**当前 v0.2 只完成 leaf-cell annotation**；它是最底层、最可验证的一步。下一步才是 full-netlist、subckt selection 和层次聚合。
+
+| 阶段 | 范围 | 状态 |
+| --- | --- | --- |
+| v0.2 | leaf-cell annotation | 已跑通；LDO 41/41 MOS、OTA 26/26 |
+| next | full-netlist annotation / subckt selection / 跨层聚合 | 设计/待实现 |
+| later | pre-sim -> post-sim -> mixed-signal / logic-aware | 方向 |
+
+详见 [docs/vision.md](docs/vision.md)。
+
+## 新老网表对比
+
+| | 老网表 | 新网表 / overlay |
+| --- | --- | --- |
+| 结构 | top + subckts + 一堆实例 | 同一层次，但每个节点带语义 |
+| 器件 | XM46、XM59，未知 role | output_stage + source_follower + evidence |
+| net | net1、net2、VERR | tail / mirror_gate / gain_node + block |
+| 匹配 | 看不出来 | LOAD_AMP、DP_AMP、CAS_BIAS |
+| 可信度 | 只能靠人猜 | confidence / candidates / review |
+| 修改 | 直接改名会破坏下游 | 源文件只读，overlay 独立 |
+
+## 已经跑通的例子（验证，不是项目全貌）
 
 <img src="docs/assets/review.svg" alt="Review view" width="100%">
 
 > 复核界面示意：把 W/L、nf/m、D/G/S/B、role、match/group、evidence 放在同一张卡片里；实际产物是 review.md / review.csv，当前没有独立 GUI。
 
-- **输入**：一个陌生、扁平、只有连接和尺寸的模拟 SPICE 网表；
-- **输出**：带 evidence / confidence / review 的 ports、devices、nets、blocks 语义 overlay；
-- **不改源文件**：原名字保留；annotated.sp 是独立提案副本；
-- **当前 demo**：LDO 41/41 MOS 人工确认，generic OTA 26/26；41 个测试通过；
-- **一条命令**：make demo（生成 annotation 和 gold evaluation）；
-- **定位**：不是仿真器，不是版图工具，是陌生网表的语义入口；
-- **可复核**：review.md / review.csv / gold.json，全部标注可逐项 accept / correct / ambiguous。
+- LDO：41/41 MOS 人工确认；合并 smoke gold 58/58；
+- generic OTA：26/26 全量确认；
+- 41 个测试 + CI；review/evaluate/CSV；变形/OOD 测试；
+- 这些数字证明 leaf-cell 这一步跑通了，不代表 full-netlist 已经完成。
+
+---
 
 ## 1. 为什么做
 
@@ -63,13 +111,15 @@ Analog2Layout 的标注模型已经把“名字 token → role/match/group”这
 
 ## 2. 项目定义
 
-给定一个陌生的、扁平的模拟 CELL 网表及其端口，在不修改源网表的前提下，恢复：
+给定一个陌生的、可能层次化的模拟网表或 CELL（最终是 top + 很多 subckt），在不修改源网表的前提下，恢复：
 
 - **ports**：方向、类别/接口、差分/总线分组；
 - **devices**：role、match、group、结构标签；
 - **nets**：电气类别、结构角色、差分/总线分组；
 - **blocks**：功能块及其端口；
 - **evidence/confidence/review**：正/负证据、竞争候选、冲突、待人工确认项。
+
+当前 v0.2 先做 **leaf-cell annotation**；full-netlist、subckt selection 和跨层聚合是 next 阶段。
 
 输出是非破坏性的语义 overlay；原始名字保留，规范名可选。subckt 名字暂不处理，但 **port 名、方向、接口类型、差分/总线分组必须进入第一版**。
 
@@ -246,6 +296,7 @@ Analog2Layout 从**已有语义的网表**出发做面积/floorplan/白线；Net
 
 ## 10. 设计细节与基准
 
+- 顶层设计（大网表 → leaf → 聚合）与阶段：docs/vision.md
 - 架构、规则表、置信度、失败模式：docs/design.md
 - LDO / OTA 基准数字、参考对比、五个分歧：docs/benchmarks.md
 - 开源同类工具、agent skill、数据集盘点：docs/landscape.md

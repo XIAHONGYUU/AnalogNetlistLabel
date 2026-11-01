@@ -2,7 +2,7 @@
 
 ## 目标
 
-把 **NetlistLabel v0.2** 做成一个面向陌生、扁平模拟 CELL 网表的语义归一化层。输入网表和端口，输出非破坏性、可复核的语义 overlay：
+把 **NetlistLabel** 做成面向大型、层次化模拟网表的语义归一化层。最终目标是：一个大 .sp（top + 很多 subckt）先从 top 层层拆解到 leaf cell，再聚合回 full-netlist 语义图。当前 v0.2 先完成 leaf-cell annotation；输入 cell 网表和端口，输出非破坏性、可复核的语义 overlay：
 
 - **port** 是一等对象：方向、类别/接口、差分/总线分组；
 - **device**：role、match/group、结构标签；
@@ -33,6 +33,7 @@
 - 首轮人工复核发现：XM59 是 PMOS source follower，net2 是 cascode 输出 + common-source 输入（interstage signal）；已补 source_follower/common_source 结构和测试。
 - 首轮人工复核 ldo_quick 24/24 已确认（device 10/10、net 6/6、port 8/8）；已沉淀为 benchmarks/gold/ldo_quick.gold.json，这是 smoke gold，不是全局准确率。
 - generic_ota 26/26 已确认（device 9/9、net 10/10、port 7/7）；已沉淀为 benchmarks/gold/generic_ota.gold.json，用于换拓扑回归。
+- v0.2 范围仍是 leaf-cell annotation；full-netlist、subckt selection、跨层聚合、post-sim/mixed-signal/logic 是后续阶段。
 - LDO 41/41 MOS 已确认；合并 gold benchmarks/gold/ldo_reviewed.gold.json 覆盖 44 device + 6 net + 8 port = 58 项。仍未复核的是 LDO 剩余 27 个 net 和 XC3/XR6 两个无源器件。
 - benchmark：generic OTA 与 SKY130 LDO raw；LDO 对既有参考：
   75.6% exact role、87.8% a2l-role、97.8% partition pair、6/6 reference match group。

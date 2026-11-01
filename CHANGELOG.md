@@ -4,6 +4,12 @@
 
 **首个展示版：陌生模拟网表的语义标注 demo。** 不是生产签核版本。
 
+### 顶层路线
+
+- 真实输入是大型 .sp（top + 很多 subckt），不是单个 flat cell；
+- 目标链路：top 接口 → subckt/cell 分解 → leaf annotation → 跨层聚合；
+- v0.2 先完成 leaf-cell annotation；full-netlist / subckt selection / 后仿真 / 混合信号 / logic 是后续阶段。
+
 ### 核心
 
 - port-first annotation：ports / devices / nets / blocks / evidence / confidence / review；

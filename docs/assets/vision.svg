@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="Noto Sans CJK SC, Noto Sans, Segoe UI, sans-serif">
+  <defs>
+    <filter id="s" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="11" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="820" fill="#f5f7fb"/>
+  <circle cx="1120" cy="80" r="150" fill="#e8efff" opacity="0.65"/>
+  <circle cx="90" cy="760" r="120" fill="#e7f7f3" opacity="0.65"/>
+
+  <text x="44" y="66" font-size="38" font-weight="700" fill="#0f172a">AnalogNetlistLabel</text>
+  <text x="44" y="100" font-size="19" fill="#475569">从一个大网表，到可复核的语义层</text>
+  <rect x="44" y="116" width="174" height="28" rx="14" fill="#e8efff" stroke="#c7d7ff"/>
+  <text x="58" y="135" font-size="13" font-weight="600" fill="#2563eb">top-down + evidence</text>
+  <text x="234" y="135" font-size="13" fill="#64748b">不是只标一个小 cell</text>
+
+  <!-- OLD -->
+  <rect x="44" y="172" width="330" height="390" rx="16" fill="#ffffff" stroke="#dfe5f0" filter="url(#s)"/>
+  <text x="66" y="204" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">TODAY / 拿到的网表</text>
+  <text x="66" y="234" font-size="21" font-weight="700" fill="#0f172a">一个大 .sp</text>
+  <text x="66" y="258" font-size="13" fill="#64748b">top + 很多 subckt，名字大多无语义</text>
+
+  <rect x="66" y="280" width="286" height="150" rx="9" fill="#0f172a"/>
+  <g font-family="Noto Sans Mono CJK SC, monospace" font-size="11.5" fill="#dbeafe">
+    <text x="80" y="304" fill="#93c5fd">top.sp</text>
+    <text x="80" y="326">├─ top</text>
+    <text x="80" y="346">│  ├─ X1 amp_core</text>
+    <text x="80" y="366">│  ├─ X2 bias_gen</text>
+    <text x="80" y="386">│  └─ X3 ldo_loop</text>
+    <text x="80" y="408" fill="#93c5fd">└─ subckt amp_core</text>
+    <text x="80" y="428" fill="#93c5fd">   XM46 ... XM59 ...</text>
+  </g>
+  <text x="66" y="458" font-size="12.5" fill="#475569">人看到层次、颜色、记忆；AI 只看到文本。</text>
+  <text x="66" y="480" font-size="12.5" fill="#475569">“哪个 subckt 值得先看？每个管子做什么？”</text>
+
+  <!-- APPROACH -->
+  <rect x="398" y="172" width="404" height="390" rx="16" fill="#ffffff" stroke="#dfe5f0" filter="url(#s)"/>
+  <text x="420" y="204" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">OUR APPROACH / 层层拆解</text>
+  <text x="420" y="234" font-size="21" font-weight="700" fill="#0f172a">先分解，再标注</text>
+  <text x="420" y="258" font-size="13" fill="#64748b">不把整张网表当成一团，也不只标一个 cell</text>
+
+  <g font-family="Noto Sans CJK SC, sans-serif">
+    <rect x="420" y="282" width="360" height="42" rx="8" fill="#f1f5f9" stroke="#dbe4f0"/>
+    <text x="436" y="308" font-size="13" font-weight="700" fill="#0f172a">large .sp</text>
+    <text x="744" y="308" font-size="12" fill="#64748b" text-anchor="end">top + subckts</text>
+
+    <path d="M600 324 L600 344" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+
+    <rect x="420" y="350" width="360" height="58" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="436" y="373" font-size="12" font-weight="700" fill="#1d4ed8">top-level / interface</text>
+    <text x="436" y="393" font-size="11.5" fill="#475569">ports · supplies · subckt instances · control</text>
+
+    <path d="M600 408 L600 428" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+
+    <rect x="420" y="434" width="172" height="74" rx="8" fill="#e7f7f3" stroke="#b7e4d8"/>
+    <text x="436" y="457" font-size="12" font-weight="700" fill="#0f766e">decompose</text>
+    <text x="436" y="477" font-size="11.5" fill="#475569">subckt / cell</text>
+    <text x="436" y="496" font-size="11.5" fill="#475569">层层下钻</text>
+
+    <rect x="608" y="434" width="172" height="74" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="624" y="457" font-size="12" font-weight="700" fill="#9a3412">annotate leaf</text>
+    <text x="624" y="477" font-size="11.5" fill="#475569">ports · devices</text>
+    <text x="624" y="496" font-size="11.5" fill="#475569">nets · blocks · review</text>
+
+    <path d="M692 508 L692 526" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="420" y="532" width="360" height="18" rx="6" fill="#eef2ff"/>
+    <text x="600" y="545" font-size="11.5" fill="#4338ca" text-anchor="middle">aggregate back: hierarchy + semantics + evidence</text>
+  </g>
+
+  <!-- NEW -->
+  <rect x="832" y="172" width="324" height="390" rx="16" fill="#ffffff" stroke="#dfe5f0" filter="url(#s)"/>
+  <text x="854" y="204" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">OUTPUT / 语义 overlay</text>
+  <text x="854" y="234" font-size="21" font-weight="700" fill="#0f172a">看得懂的网表</text>
+  <text x="854" y="258" font-size="13" fill="#64748b">原始名字保留，语义作为独立层</text>
+
+  <rect x="854" y="280" width="280" height="252" rx="10" fill="#fbfdff" stroke="#dbe4f0"/>
+  <g font-size="12">
+    <text x="870" y="304" font-size="11" fill="#64748b">top / ldo</text>
+    <rect x="870" y="316" width="112" height="26" rx="6" fill="#e7f7f3" stroke="#b7e4d8"/>
+    <text x="880" y="334" fill="#0f766e">AMP · input_pair</text>
+    <rect x="990" y="316" width="126" height="26" rx="6" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="1000" y="334" fill="#9a3412">BIAS · mirror</text>
+    <rect x="870" y="350" width="112" height="26" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="880" y="368" fill="#1d4ed8">OUT · pass</text>
+    <rect x="990" y="350" width="126" height="26" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="1000" y="368" fill="#6d28d9">CTRL · enable</text>
+
+    <text x="870" y="404" font-size="11" fill="#64748b">cell / XM59</text>
+    <rect x="870" y="416" width="280" height="96" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="884" y="440" font-size="15" font-weight="700" fill="#0f172a">XM59  output_stage</text>
+    <text x="884" y="460" font-size="11.5" fill="#475569">W/L 1/0.5 · D AVSS · G VERR · S VPASS</text>
+    <rect x="884" y="474" width="118" height="22" rx="5" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="893" y="489" font-size="10.5" fill="#9a3412">source_follower</text>
+    <text x="1014" y="489" font-size="10.5" fill="#0f766e">evidence ✓</text>
+    <text x="884" y="508" font-size="10.5" fill="#64748b">review: auto · conf 0.72</text>
+  </g>
+  <text x="854" y="558" font-size="11.5" fill="#64748b">不是重命名；是可复核的语义层</text>
+
+  <!-- roadmap -->
+  <rect x="44" y="592" width="1112" height="180" rx="16" fill="#0f172a"/>
+  <text x="68" y="622" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1.2">SCOPE / 路线</text>
+  <g font-size="12">
+    <rect x="68" y="642" width="320" height="104" rx="10" fill="#12213b" stroke="#1e3a5f"/>
+    <text x="86" y="668" font-size="13" font-weight="700" fill="#93c5fd">NOW · v0.2</text>
+    <text x="86" y="690" fill="#e5e7eb">leaf-cell annotation</text>
+    <text x="86" y="712" fill="#94a3b8">LDO 41/41 MOS · OTA 26/26</text>
+    <text x="86" y="732" fill="#94a3b8">review / gold / CI</text>
+
+    <rect x="404" y="642" width="320" height="104" rx="10" fill="#12213b" stroke="#1e3a5f"/>
+    <text x="422" y="668" font-size="13" font-weight="700" fill="#6ee7b7">NEXT · hierarchy</text>
+    <text x="422" y="690" fill="#e5e7eb">full-netlist annotation</text>
+    <text x="422" y="712" fill="#94a3b8">subckt selection · aggregation</text>
+    <text x="422" y="732" fill="#94a3b8">top-level interface / block graph</text>
+
+    <rect x="740" y="642" width="392" height="104" rx="10" fill="#12213b" stroke="#1e3a5f"/>
+    <text x="758" y="668" font-size="13" font-weight="700" fill="#fcd34d">LATER</text>
+    <text x="758" y="690" fill="#e5e7eb">pre-sim → post-sim → mixed-signal</text>
+    <text x="758" y="712" fill="#94a3b8">logic / digital-aware annotation</text>
+    <text x="758" y="732" fill="#94a3b8">still: read-only, evidence-first</text>
+  </g>
+
+  <text x="1124" y="796" font-size="10.5" fill="#94a3b8" text-anchor="end">source read-only · original names preserved · demo, not signoff</text>
+</svg>
