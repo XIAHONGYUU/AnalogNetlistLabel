@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software or its gold sets, please cite it as below."
+title: "AnalogNetlistLabel: Evidence-Backed Semantic Annotation for Unknown Analog SPICE Netlists"
+abstract: >-
+  A deterministic, port-first semantic annotation layer for unfamiliar flat
+  analog SPICE netlists. It recovers device roles, match groups, net classes,
+  structural roles, blocks, evidence, confidence, and a human review queue
+  without modifying the source netlist. It also ships a selective-prediction
+  evaluation protocol and small human-reviewed gold sets.
+type: software
+authors:
+  - family-names: "Zuokaiyuann"
+    given-names: "XIAHONGYUU"
+    alias: "XIAHONGYUU"
+    website: "https://github.com/XIAHONGYUU"
+version: "0.2.0"
+date-released: "2026-11-01"
+license: "Apache-2.0"
+repository-code: "https://github.com/XIAHONGYUU/AnalogNetlistLabel"
+url: "https://github.com/XIAHONGYUU/AnalogNetlistLabel"
+keywords:
+  - analog circuit design
+  - netlist annotation
+  - EDA
+  - SPICE
+  - semantic annotation
+  - selective prediction
+  - LLM agent

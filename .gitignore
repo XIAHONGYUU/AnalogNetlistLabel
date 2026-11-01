@@ -1,0 +1,18 @@
+# Generated artifacts
+/out/
+/review/
+*.annotated.sp.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local tools and scratch
+.tools/
+scratch/

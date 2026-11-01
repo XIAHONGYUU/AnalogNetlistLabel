@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/NetlistLabel/annotation.schema.json",
+  "title": "NetlistLabel annotation proposal (v0.2)",
+  "description": "A non-destructive semantic overlay for an unknown analog SPICE cell. Original names are preserved; canonical names are optional suggestions. Ports, devices, nets, blocks, evidence and review state are first-class.",
+  "type": "object",
+  "required": ["schema_version", "design", "ports", "devices", "nets", "blocks", "review_queue", "coverage", "warnings"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "design": {
+      "type": "object",
+      "required": ["name", "source", "subckt", "ports", "port_directions", "rails", "output_ports", "stats"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "source": {"type": "string"},
+        "subckt": {"type": "string"},
+        "ports": {"type": "array", "items": {"type": "string"}},
+        "port_directions": {"type": "object", "additionalProperties": {"type": "string"}},
+        "rails": {"type": "array", "items": {"type": "string"}},
+        "output_ports": {"type": "array", "items": {"type": "string"}},
+        "stats": {"type": "object", "additionalProperties": true}
+      }
+    },
+    "ports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["original_name", "direction", "class", "interface", "quantity", "polarity", "differential_group", "bus", "semantic_id", "canonical_name", "confidence", "review", "evidence", "negative_evidence", "candidates", "conflicts", "anchors"],
+        "additionalProperties": false,
+        "properties": {
+          "original_name": {"type": "string"},
+          "direction": {"type": "string", "enum": ["input", "output", "bidirectional", "power", "ground", "unknown"]},
+          "class": {"type": "string", "enum": ["power", "ground", "reference", "bias", "signal", "control", "clock", "reset", "enable", "select", "trim", "interface", "unknown"]},
+          "interface": {"type": "string"},
+          "quantity": {"type": "string", "enum": ["voltage", "current", "digital", "digital_bus", "unknown"]},
+          "polarity": {"type": "string", "enum": ["positive", "negative", "high", "low", "active_high", "active_low", "unknown"]},
+          "differential_group": {"type": ["string", "null"]},
+          "bus": {"type": ["string", "null"]},
+          "semantic_id": {"type": "string"},
+          "canonical_name": {"type": ["string", "null"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "review": {"type": "string", "enum": ["auto", "confirm", "unknown"]},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "negative_evidence": {"type": "array", "items": {"type": "string"}},
+          "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+          "conflicts": {"type": "array", "items": {"type": "string"}},
+          "anchors": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "kind", "type", "model", "role", "a2l_role", "group", "match", "confidence", "review", "structures", "evidence", "negative_evidence", "alternatives", "candidates", "semantic_id", "canonical_name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "kind": {"type": "string", "enum": ["mos", "cap", "res", "diode", "bjt", "inductor", "subckt", "other"]},
+          "type": {"type": "string"},
+          "model": {"type": "string"},
+          "terminals": {"type": "object", "additionalProperties": {"type": "string"}},
+          "role": {
+            "type": "string",
+            "enum": ["input_pair", "current_mirror", "cascode", "tail_current", "output_stage", "pass_device", "compensation", "decap", "bias", "reference", "feedback", "enable_switch", "adj_switch", "switch", "logic", "sense", "esd", "dummy", "passive", "unknown"]
+          },
+          "a2l_role": {
+            "type": ["string", "null"],
+            "enum": ["input_pair", "current_mirror", "cascode", "tail_current", "output_stage", "compensation", "bias", "enable_switch", "adj_switch", "sense", "esd", "dummy", "decap", "unknown", null]
+          },
+          "group": {"type": ["string", "null"]},
+          "match": {"type": ["string", "null"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "review": {"type": "string", "enum": ["auto", "confirm", "unknown"]},
+          "structures": {"type": "array", "items": {"type": "string"}},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "negative_evidence": {"type": "array", "items": {"type": "string"}},
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["role", "confidence", "reason"],
+              "additionalProperties": false,
+              "properties": {
+                "role": {"type": "string"},
+                "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+                "reason": {"type": "string"}
+              }
+            }
+          },
+          "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+          "semantic_id": {"type": ["string", "null"]},
+          "canonical_name": {"type": ["string", "null"]},
+          "top_score": {"type": "number", "minimum": 0, "maximum": 1},
+          "margin": {"type": "number", "minimum": 0, "maximum": 1},
+          "line_no": {"type": "integer", "minimum": 0},
+          "notes": {"type": "string"},
+          "width_um": {"type": "number"},
+          "l_um": {"type": "number"},
+          "nf": {"type": "integer", "minimum": 1},
+          "m": {"type": "integer", "minimum": 1},
+          "cap_pf": {"type": "number"},
+          "res_ohm": {"type": "number"},
+          "value_known": {"type": "boolean"}
+        }
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["original_name", "is_port", "class", "structural_role", "function", "differential_group", "bus", "semantic_id", "canonical_name", "block", "confidence", "review", "evidence", "negative_evidence", "candidates", "conflicts"],
+        "additionalProperties": false,
+        "properties": {
+          "original_name": {"type": "string"},
+          "is_port": {"type": "boolean"},
+          "class": {"type": "string", "enum": ["power", "ground", "reference", "bias", "signal", "control", "clock", "reset", "enable", "select", "interface", "unknown"]},
+          "structural_role": {"type": "string", "enum": ["supply", "ground", "input", "output", "tail", "mirror_gate", "cascode_mid", "pass_gate", "feedback", "reference", "startup", "gain_node", "degeneration", "bias_bus", "control", "internal", "unknown"]},
+          "function": {"type": ["string", "null"]},
+          "differential_group": {"type": ["string", "null"]},
+          "bus": {"type": ["string", "null"]},
+          "semantic_id": {"type": "string"},
+          "canonical_name": {"type": ["string", "null"]},
+          "block": {"type": ["string", "null"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "review": {"type": "string", "enum": ["auto", "confirm", "unknown"]},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "negative_evidence": {"type": "array", "items": {"type": "string"}},
+          "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+          "conflicts": {"type": "array", "items": {"type": "string"}},
+          "anchors": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+    "review_queue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "name", "role", "group", "review", "reasons", "alternatives"],
+        "additionalProperties": true,
+        "properties": {
+          "kind": {"type": "string", "enum": ["device", "port", "net"]},
+          "name": {"type": "string"},
+          "device": {"type": "string"},
+          "role": {"type": "string"},
+          "interface": {"type": "string"},
+          "direction": {"type": "string"},
+          "structural_role": {"type": "string"},
+          "group": {"type": ["string", "null"]},
+          "review": {"type": "string"},
+          "reasons": {"type": "array", "items": {"type": "string"}},
+          "alternatives": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["devices_total", "roles_known", "role_coverage", "mos_total", "mos_roles_known", "mos_role_coverage", "matched_devices", "match_coverage", "ports_total", "ports_classified", "port_class_coverage", "nets_total", "nets_class_known", "net_class_coverage", "nets_role_known", "net_role_coverage", "review_items", "mean_confidence"],
+      "additionalProperties": true,
+      "properties": {
+        "devices_total": {"type": "integer", "minimum": 0},
+        "roles_known": {"type": "integer", "minimum": 0},
+        "role_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "mos_total": {"type": "integer", "minimum": 0},
+        "mos_roles_known": {"type": "integer", "minimum": 0},
+        "mos_role_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "matched_devices": {"type": "integer", "minimum": 0},
+        "match_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "ports_total": {"type": "integer", "minimum": 0},
+        "ports_classified": {"type": "integer", "minimum": 0},
+        "port_class_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "nets_total": {"type": "integer", "minimum": 0},
+        "nets_class_known": {"type": "integer", "minimum": 0},
+        "net_class_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "nets_role_known": {"type": "integer", "minimum": 0},
+        "net_role_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "port_review_items": {"type": "integer", "minimum": 0},
+        "net_review_items": {"type": "integer", "minimum": 0},
+        "review_items": {"type": "integer", "minimum": 0},
+        "mean_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "mean_port_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "mean_net_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "structure_counts": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "block_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "required": ["label", "score", "kind", "evidence", "negative_evidence", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {"type": "string"},
+        "score": {"type": "number", "minimum": 0, "maximum": 1},
+        "kind": {"type": "string", "enum": ["class", "role", "structural_role"]},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "negative_evidence": {"type": "array", "items": {"type": "string"}},
+        "reason": {"type": "string"}
+      }
+    },
+    "block": {
+      "type": "object",
+      "required": ["id", "label", "kind", "devices", "nets", "ports", "confidence", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "kind": {"type": "string"},
+        "devices": {"type": "array", "items": {"type": "string"}},
+        "nets": {"type": "array", "items": {"type": "string"}},
+        "ports": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

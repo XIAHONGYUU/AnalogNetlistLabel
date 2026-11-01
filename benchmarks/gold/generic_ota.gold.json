@@ -1,0 +1,439 @@
+{
+  "schema_version": "0.1",
+  "design": "generic_ota",
+  "source": "generic_ota.sp",
+  "instructions": "先读 review.md 或 review.csv。只改 decision 和 label 字段。decision=accept 表示预测正确；decision=correct 表示改了标签；decision=ambiguous 表示确实有歧义，不计入 accuracy；unreviewed 表示尚未复核。predicted 是审计记录，不要改。",
+  "devices": {
+    "XM1": {
+      "id": "D01",
+      "predicted": {
+        "role": "input_pair",
+        "match": "DP_AMP",
+        "group": "AMP",
+        "confidence": 0.9,
+        "top_score": 0.9,
+        "margin": 0.55,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "input_pair",
+      "acceptable_roles": [],
+      "match": "DP_AMP",
+      "group": "AMP",
+      "comment": ""
+    },
+    "XM2": {
+      "id": "D02",
+      "predicted": {
+        "role": "input_pair",
+        "match": "DP_AMP",
+        "group": "AMP",
+        "confidence": 0.9,
+        "top_score": 0.9,
+        "margin": 0.55,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "input_pair",
+      "acceptable_roles": [],
+      "match": "DP_AMP",
+      "group": "AMP",
+      "comment": ""
+    },
+    "XM3": {
+      "id": "D03",
+      "predicted": {
+        "role": "tail_current",
+        "match": null,
+        "group": "AMP",
+        "confidence": 0.9,
+        "top_score": 0.9,
+        "margin": 0.55,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "tail_current",
+      "acceptable_roles": [],
+      "match": "",
+      "group": "AMP",
+      "comment": ""
+    },
+    "XM4": {
+      "id": "D04",
+      "predicted": {
+        "role": "current_mirror",
+        "match": "LOAD_AMP",
+        "group": "AMP",
+        "confidence": 0.85,
+        "top_score": 0.85,
+        "margin": 0.5,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "current_mirror",
+      "acceptable_roles": [],
+      "match": "LOAD_AMP",
+      "group": "AMP",
+      "comment": ""
+    },
+    "XM5": {
+      "id": "D05",
+      "predicted": {
+        "role": "current_mirror",
+        "match": "LOAD_AMP",
+        "group": "AMP",
+        "confidence": 0.85,
+        "top_score": 0.85,
+        "margin": 0.5,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "current_mirror",
+      "acceptable_roles": [],
+      "match": "LOAD_AMP",
+      "group": "AMP",
+      "comment": ""
+    },
+    "XM6": {
+      "id": "D06",
+      "predicted": {
+        "role": "output_stage",
+        "match": null,
+        "group": "OUT",
+        "confidence": 0.72,
+        "top_score": 0.72,
+        "margin": 0.37,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "output_stage",
+      "acceptable_roles": [],
+      "match": "",
+      "group": "OUT",
+      "comment": ""
+    },
+    "XM7": {
+      "id": "D07",
+      "predicted": {
+        "role": "current_mirror",
+        "match": null,
+        "group": "OUT",
+        "confidence": 0.82,
+        "top_score": 0.82,
+        "margin": 0.47,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "current_mirror",
+      "acceptable_roles": [],
+      "match": "",
+      "group": "OUT",
+      "comment": ""
+    },
+    "XM8": {
+      "id": "D08",
+      "predicted": {
+        "role": "current_mirror",
+        "match": null,
+        "group": "BIAS",
+        "confidence": 0.82,
+        "top_score": 0.82,
+        "margin": 0.47,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "role": "current_mirror",
+      "acceptable_roles": [],
+      "match": "",
+      "group": "BIAS",
+      "comment": ""
+    },
+    "XC1": {
+      "id": "D09",
+      "predicted": {
+        "role": "compensation",
+        "match": null,
+        "group": "PASSIVE",
+        "confidence": 0.68,
+        "top_score": 0.68,
+        "margin": 0.33,
+        "review": "confirm"
+      },
+      "decision": "accept",
+      "role": "compensation",
+      "acceptable_roles": [],
+      "match": "",
+      "group": "PASSIVE",
+      "comment": ""
+    }
+  },
+  "nets": {
+    "n1": {
+      "id": "N01",
+      "predicted": {
+        "class": "bias",
+        "structural_role": "mirror_gate",
+        "block": "AMP",
+        "confidence": 0.8,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "bias",
+      "acceptable_classes": [],
+      "structural_role": "mirror_gate",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "inp": {
+      "id": "N02",
+      "predicted": {
+        "class": "signal",
+        "structural_role": "input",
+        "block": "AMP",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "signal",
+      "acceptable_classes": [],
+      "structural_role": "input",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "tail": {
+      "id": "N03",
+      "predicted": {
+        "class": "signal",
+        "structural_role": "tail",
+        "block": "AMP",
+        "confidence": 0.85,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "signal",
+      "acceptable_classes": [],
+      "structural_role": "tail",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "vss": {
+      "id": "N04",
+      "predicted": {
+        "class": "ground",
+        "structural_role": "ground",
+        "block": null,
+        "confidence": 0.95,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "ground",
+      "acceptable_classes": [],
+      "structural_role": "ground",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "n2": {
+      "id": "N05",
+      "predicted": {
+        "class": "signal",
+        "structural_role": "gain_node",
+        "block": "AMP",
+        "confidence": 0.65,
+        "review": "confirm"
+      },
+      "decision": "accept",
+      "class": "signal",
+      "acceptable_classes": [],
+      "structural_role": "gain_node",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "inn": {
+      "id": "N06",
+      "predicted": {
+        "class": "signal",
+        "structural_role": "input",
+        "block": "AMP",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "signal",
+      "acceptable_classes": [],
+      "structural_role": "input",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "nbias": {
+      "id": "N07",
+      "predicted": {
+        "class": "bias",
+        "structural_role": "bias_bus",
+        "block": "AMP",
+        "confidence": 0.85,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "bias",
+      "acceptable_classes": [],
+      "structural_role": "bias_bus",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "vdd": {
+      "id": "N08",
+      "predicted": {
+        "class": "power",
+        "structural_role": "supply",
+        "block": null,
+        "confidence": 0.95,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "power",
+      "acceptable_classes": [],
+      "structural_role": "supply",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "out": {
+      "id": "N09",
+      "predicted": {
+        "class": "signal",
+        "structural_role": "output",
+        "block": "OUT",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "signal",
+      "acceptable_classes": [],
+      "structural_role": "output",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    },
+    "pbias": {
+      "id": "N10",
+      "predicted": {
+        "class": "bias",
+        "structural_role": "bias_bus",
+        "block": "BIAS",
+        "confidence": 0.85,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "class": "bias",
+      "acceptable_classes": [],
+      "structural_role": "bias_bus",
+      "acceptable_structural_roles": [],
+      "comment": ""
+    }
+  },
+  "ports": {
+    "inp": {
+      "id": "P01",
+      "predicted": {
+        "direction": "input",
+        "class": "signal",
+        "interface": "analog_input",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "input",
+      "class": "signal",
+      "interface": "analog_input",
+      "comment": ""
+    },
+    "inn": {
+      "id": "P02",
+      "predicted": {
+        "direction": "input",
+        "class": "signal",
+        "interface": "analog_input",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "input",
+      "class": "signal",
+      "interface": "analog_input",
+      "comment": ""
+    },
+    "out": {
+      "id": "P03",
+      "predicted": {
+        "direction": "output",
+        "class": "signal",
+        "interface": "analog_output",
+        "confidence": 0.7,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "output",
+      "class": "signal",
+      "interface": "analog_output",
+      "comment": ""
+    },
+    "vdd": {
+      "id": "P04",
+      "predicted": {
+        "direction": "power",
+        "class": "power",
+        "interface": "power",
+        "confidence": 0.95,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "power",
+      "class": "power",
+      "interface": "power",
+      "comment": ""
+    },
+    "vss": {
+      "id": "P05",
+      "predicted": {
+        "direction": "ground",
+        "class": "ground",
+        "interface": "ground",
+        "confidence": 0.95,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "ground",
+      "class": "ground",
+      "interface": "ground",
+      "comment": ""
+    },
+    "nbias": {
+      "id": "P06",
+      "predicted": {
+        "direction": "input",
+        "class": "bias",
+        "interface": "bias",
+        "confidence": 0.85,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "input",
+      "class": "bias",
+      "interface": "bias",
+      "comment": ""
+    },
+    "pbias": {
+      "id": "P07",
+      "predicted": {
+        "direction": "input",
+        "class": "bias",
+        "interface": "bias",
+        "confidence": 0.85,
+        "review": "auto"
+      },
+      "decision": "accept",
+      "direction": "input",
+      "class": "bias",
+      "interface": "bias",
+      "comment": ""
+    }
+  }
+}

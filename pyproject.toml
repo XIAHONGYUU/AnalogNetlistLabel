@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netlistlabel"
+version = "0.2.0"
+description = "Evidence-backed semantic annotation for unknown analog SPICE netlists"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "NetlistLabel contributors"}]
+dependencies = []
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+]
+
+[project.optional-dependencies]
+test = ["jsonschema>=4"]
+
+[project.urls]
+Homepage = "https://github.com/XIAHONGYUU/AnalogNetlistLabel"
+Repository = "https://github.com/XIAHONGYUU/AnalogNetlistLabel"
+Issues = "https://github.com/XIAHONGYUU/AnalogNetlistLabel/issues"
+Changelog = "https://github.com/XIAHONGYUU/AnalogNetlistLabel/blob/main/CHANGELOG.md"
+
+[project.scripts]
+netlistlabel = "netlistlabel.cli:main"
+nll = "netlistlabel.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["netlistlabel*"]

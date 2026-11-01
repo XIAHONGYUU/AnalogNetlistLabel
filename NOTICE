@@ -1,0 +1,14 @@
+NetlistLabel
+Copyright 2026 NetlistLabel contributors
+
+Licensed under the Apache License, Version 2.0.
+
+Design inspiration:
+- Analog2Layout (Apache-2.0), especially its device-role taxonomy and the
+  "names are a hint, annotations are facts, validator is arbiter" principle.
+  NetlistLabel is a separate implementation and takes the annotation problem
+  earlier in the flow: generic-name netlists with no semantic tokens.
+
+Benchmark provenance (not redistributed in this repository):
+- sky130_am_ip__ldo_01v8, fossi-foundation, Apache-2.0.
+  Used as an external real-netlist benchmark; see docs/benchmarks.md.
