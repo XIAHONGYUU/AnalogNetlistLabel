@@ -66,7 +66,7 @@
 5. 扩展 parser：include/param/black-box/diagnostics；加可选 adapter（analog-design-cli / spice-canonical），不作为核心依赖。
 6. [done] v0.2.0 demo 文件：CHANGELOG、CITATION、DISCLAIMER、CONTRIBUTING、Makefile、scripts/demo.sh、gold；LDO 41/41 MOS + generic_ota 26 项已确认。
 7. [done] 建 GitHub 仓库 XIAHONGYUU/AnalogNetlistLabel（已转 public）、push main + tag v0.2.0，并创建 v0.2.0 release；GitHub profile README 已加入展示图。
-8. [pending] 补 LDO 剩余 net/passive 或 100–300 device 的人工 gold set；再跑 HF 130k 分层抽样和 analog-topology-classifier / CircuitGenome 对照。
+8. [pending] 顶层路线 next：full-netlist hierarchy、subckt selection、跨层聚合；同时补 LDO 剩余 net/passive 或 100–300 device 的人工 gold set；之后跑 HF 130k 分层抽样和 analog-topology-classifier / CircuitGenome 对照。
 9. [done] CI 和开源卫生：无个人路径、无外部网表、demo 状态。
 10. schema 冻结后写 SKILL.md；CLI 稳定后做薄 MCP wrapper（一个高层 annotate_cell + 只读 inspection tools）。
 
