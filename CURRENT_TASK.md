@@ -14,8 +14,9 @@
 
 ## 当前状态（2026-11-01）
 
-- 仓库已发布：https://github.com/XIAHONGYUU/AnalogNetlistLabel（private），commit f475f28，tag v0.2.0。
+- 仓库已发布：https://github.com/XIAHONGYUU/AnalogNetlistLabel（private），commit 18073cd，tag v0.2.0，release https://github.com/XIAHONGYUU/AnalogNetlistLabel/releases/tag/v0.2.0。
 - baseline 已提交；Git identity 使用 Zuokaiyuann <zuokaiyuann@foxmail.com>。
+- GitHub Actions CI 在 main 和 v0.2.0 上通过（Python 3.11/3.12）。
 - v0.2 semantic core 已在 v0.1 原型上实现：
   - SPICE 子集解析：MOS / R / C / D / BJT / subckt、.subckt、.PININFO、.global、续行、注释；
   - facts：rail、diode、mirror clusters、pairs、tails、cascodes、inverters、muxes、pass/output candidates、control propagation；
@@ -63,7 +64,7 @@
 4. [done] metamorphic/OOD 测试：device/net rename、shuffle、case、W/L scale、subckt rename、RC/divider/digital；XM8 pbias regression。
 5. 扩展 parser：include/param/black-box/diagnostics；加可选 adapter（analog-design-cli / spice-canonical），不作为核心依赖。
 6. [done] v0.2.0 demo 文件：CHANGELOG、CITATION、DISCLAIMER、CONTRIBUTING、Makefile、scripts/demo.sh、gold；LDO 41/41 MOS + generic_ota 26 项已确认。
-7. [done] 建 private GitHub 仓库 XIAHONGYUU/AnalogNetlistLabel 并 push（main + tag v0.2.0）。
+7. [done] 建 private GitHub 仓库 XIAHONGYUU/AnalogNetlistLabel、push main + tag v0.2.0，并创建 v0.2.0 release。
 8. [pending] 补 LDO 剩余 net/passive 或 100–300 device 的人工 gold set；再跑 HF 130k 分层抽样和 analog-topology-classifier / CircuitGenome 对照。
 9. [done] CI 和开源卫生：无个人路径、无外部网表、demo 状态。
 10. schema 冻结后写 SKILL.md；CLI 稳定后做薄 MCP wrapper（一个高层 annotate_cell + 只读 inspection tools）。
