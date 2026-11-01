@@ -1,8 +1,14 @@
 # AnalogNetlistLabel
 
+[![release](https://img.shields.io/github/v/release/XIAHONGYUU/AnalogNetlistLabel?label=release)](https://github.com/XIAHONGYUU/AnalogNetlistLabel/releases) [![ci](https://github.com/XIAHONGYUU/AnalogNetlistLabel/actions/workflows/ci.yml/badge.svg)](https://github.com/XIAHONGYUU/AnalogNetlistLabel/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/XIAHONGYUU/AnalogNetlistLabel)](LICENSE)
+
 > **NetlistLabel v0.2.0 demo。** schema 和 API 仍可能变化；用于展示与复核，不用于生产签核。
+>
+> **项目背景与我的角色**：来自模拟电路语义标注与版图 handoff 的实践。本人负责问题定义、role taxonomy、证据口径、评测协议与 demo 设计；代码、示例和文档在 AI 辅助下完成。
 
 > 给一个陌生网表一个**可复核的语义层**：端口是什么、器件在做什么、每个 net 属于什么电气类别/结构角色、哪些必须匹配、依据是什么、哪里还需要人确认。
+
+**30 秒版**：输入一个只有连接和尺寸的 flat SPICE netlist，输出带 evidence / confidence / review 的 ports、devices、nets、blocks 语义层；源网表只读，不确定项显式交给人工复核。
 
 NetlistLabel 面向开源社区里大量“只有连接关系和尺寸、没有语义”的模拟网表。它不改电路、不改 W/L、不发明规则；它输出一份带证据和置信度的**语义 overlay**，供工程师复核后写回或供下游工具消费。
 
