@@ -58,9 +58,8 @@
 
 ## 为什么重要：四个下游方向
 
-如果语义层走通，它不只是“标注报告”，而是 **AI 进入开源模拟素材库的接口**。公开网表通常没有 GUI，只有大 .sp；AI 能理解之后，很多事才有基础。
+如果语义层走通，它不只是“标注报告”，而是 **AI 进入开源模拟素材库的接口**。公开网表通常没有 GUI，只有大 .sp；AI 能理解之后，很多事才有基础。上面首页图的下半部分就是这四个方向。
 
-<img src="docs/assets/applications.svg" alt="Why netlist semantics matter" width="100%">
 
 | 方向 | 现在能做什么 | 之后可以延伸 |
 | --- | --- | --- |
@@ -86,7 +85,7 @@
 
 <img src="docs/assets/review.svg" alt="Review view" width="100%">
 
-> 复核界面示意：把 W/L、nf/m、D/G/S/B、role、match/group、evidence 放在同一张卡片里；实际产物是 review.md / review.csv，当前没有独立 GUI。
+> 示例：从一行网表到事实、证据、决策；实际产物是 review.md / review.csv，当前没有独立 GUI。
 
 - LDO：41/41 MOS 人工确认；合并 smoke gold 58/58；
 - generic OTA：26/26 全量确认；
