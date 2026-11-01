@@ -8,14 +8,23 @@ NetlistLabel 面向开源社区里大量“只有连接关系和尺寸、没有�
 
 **语义是契约，名字是渲染。** 原始器件名/net 名永远保留；规范名只是可选建议。
 
+<img src="docs/assets/overview.svg" alt="AnalogNetlistLabel overview" width="100%">
+
+> 输入一个没有语义的网表，输出带 evidence / confidence / review 的语义 overlay。
+
 ## 三分钟看懂
+
+<img src="docs/assets/review.svg" alt="Review view" width="100%">
+
+> 复核界面示意：把 W/L、nf/m、D/G/S/B、role、match/group、evidence 放在同一张卡片里；实际产物是 review.md / review.csv，当前没有独立 GUI。
 
 - **输入**：一个陌生、扁平、只有连接和尺寸的模拟 SPICE 网表；
 - **输出**：带 evidence / confidence / review 的 ports、devices、nets、blocks 语义 overlay；
 - **不改源文件**：原名字保留；annotated.sp 是独立提案副本；
 - **当前 demo**：LDO 41/41 MOS 人工确认，generic OTA 26/26；41 个测试通过；
 - **一条命令**：make demo（生成 annotation 和 gold evaluation）；
-- **定位**：不是仿真器，不是版图工具，是陌生网表的语义入口。
+- **定位**：不是仿真器，不是版图工具，是陌生网表的语义入口；
+- **可复核**：review.md / review.csv / gold.json，全部标注可逐项 accept / correct / ambiguous。
 
 ## 1. 为什么做
 

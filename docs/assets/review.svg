@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Noto Sans CJK SC, Noto Sans, Segoe UI, sans-serif">
+  <defs>
+    <filter id="cardShadow" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#f3f6fb"/>
+
+  <!-- app bar -->
+  <rect x="0" y="0" width="1200" height="70" fill="#0f172a"/>
+  <text x="32" y="43" font-size="20" font-weight="700" fill="#ffffff">AnalogNetlistLabel</text>
+  <text x="270" y="43" font-size="14" fill="#94a3b8">/ LDO review</text>
+  <rect x="1000" y="22" width="168" height="27" rx="13" fill="#123b33" stroke="#1f6f5f"/>
+  <text x="1084" y="40" font-size="12" fill="#6ee7b7" text-anchor="middle">58/58 reviewed · CI ✓</text>
+
+  <!-- sidebar -->
+  <rect x="32" y="94" width="300" height="630" rx="14" fill="#ffffff" stroke="#dde5f0" filter="url(#cardShadow)"/>
+  <text x="54" y="126" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">REVIEW PACKET</text>
+  <text x="54" y="154" font-size="20" font-weight="700" fill="#111827">LDO · 41 MOS</text>
+  <text x="54" y="176" font-size="12" fill="#64748b">合并 gold: 44 device / 6 net / 8 port</text>
+  <rect x="54" y="190" width="256" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="54" y="190" width="256" height="8" rx="4" fill="#0f9d8a"/>
+  <text x="54" y="216" font-size="11" fill="#64748b">58 / 58 accepted</text>
+
+  <g font-size="12">
+    <rect x="48" y="236" width="268" height="52" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="64" y="258" font-weight="700" fill="#111827">D01  XM46</text>
+    <text x="64" y="276" fill="#64748b">current_mirror · 1/7</text>
+    <text x="286" y="266" fill="#0f9d8a" text-anchor="end">✓</text>
+
+    <rect x="48" y="294" width="268" height="52" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="64" y="316" font-weight="700" fill="#111827">D02  XM48</text>
+    <text x="64" y="334" fill="#64748b">current_mirror · 1/7</text>
+    <text x="286" y="324" fill="#0f9d8a" text-anchor="end">✓</text>
+
+    <rect x="48" y="352" width="268" height="52" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="64" y="374" font-weight="700" fill="#111827">D03  XM55</text>
+    <text x="64" y="392" fill="#64748b">current_mirror · 1/7</text>
+    <text x="286" y="382" fill="#0f9d8a" text-anchor="end">✓</text>
+
+    <rect x="48" y="410" width="268" height="56" rx="9" fill="#eef4ff" stroke="#93b4ff" stroke-width="1.5"/>
+    <text x="64" y="433" font-weight="700" fill="#1d4ed8">D04  XM59</text>
+    <text x="64" y="452" fill="#3159a8">output_stage · 1/0.5</text>
+    <text x="286" y="442" fill="#2f6fed" text-anchor="end">›</text>
+
+    <rect x="48" y="472" width="268" height="52" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="64" y="494" font-weight="700" fill="#111827">D05  XR4</text>
+    <text x="64" y="512" fill="#64748b">feedback · R</text>
+    <text x="286" y="502" fill="#0f9d8a" text-anchor="end">✓</text>
+
+    <rect x="48" y="530" width="268" height="52" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="64" y="552" font-weight="700" fill="#111827">D06  XM60</text>
+    <text x="64" y="570" fill="#64748b">current_mirror · 1/7</text>
+    <text x="286" y="560" fill="#0f9d8a" text-anchor="end">✓</text>
+  </g>
+
+  <rect x="48" y="602" width="268" height="96" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="64" y="626" font-size="11" font-weight="700" fill="#64748b">HOW TO REVIEW</text>
+  <text x="64" y="648" font-size="11.5" fill="#374151">1. 对照 D/G/S/B 和尺寸</text>
+  <text x="64" y="668" font-size="11.5" fill="#374151">2. accept / correct / ambiguous</text>
+  <text x="64" y="688" font-size="11.5" fill="#374151">3. 写回 review.csv 或 gold.json</text>
+
+  <!-- detail card -->
+  <rect x="356" y="94" width="540" height="500" rx="14" fill="#ffffff" stroke="#dde5f0" filter="url(#cardShadow)"/>
+  <text x="382" y="128" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">DEVICE DETAIL</text>
+  <text x="382" y="166" font-size="30" font-weight="700" fill="#111827">XM59</text>
+  <rect x="490" y="143" width="136" height="30" rx="15" fill="#e7f7f3" stroke="#b7e4d8"/>
+  <text x="558" y="163" font-size="13" font-weight="700" fill="#0f766e" text-anchor="middle">output_stage</text>
+  <text x="382" y="194" font-size="14" fill="#64748b">W/L 1/0.5 µm · nf/m 1/1 · group OUT</text>
+
+  <text x="382" y="232" font-size="12" font-weight="700" fill="#64748b">TERMINALS</text>
+  <g font-size="14">
+    <rect x="382" y="246" width="118" height="54" rx="9" fill="#f8fafc" stroke="#dbe4f0"/>
+    <text x="394" y="269" font-size="11" fill="#64748b">DRAIN</text><text x="394" y="289" font-weight="700" fill="#111827">AVSS</text>
+    <rect x="512" y="246" width="118" height="54" rx="9" fill="#f8fafc" stroke="#dbe4f0"/>
+    <text x="524" y="269" font-size="11" fill="#64748b">GATE</text><text x="524" y="289" font-weight="700" fill="#111827">VERR</text>
+    <rect x="642" y="246" width="118" height="54" rx="9" fill="#f8fafc" stroke="#dbe4f0"/>
+    <text x="654" y="269" font-size="11" fill="#64748b">SOURCE</text><text x="654" y="289" font-weight="700" fill="#111827">VPASS</text>
+    <rect x="772" y="246" width="98" height="54" rx="9" fill="#f8fafc" stroke="#dbe4f0"/>
+    <text x="784" y="269" font-size="11" fill="#64748b">BULK</text><text x="784" y="289" font-weight="700" fill="#111827">AVDD</text>
+  </g>
+
+  <text x="382" y="338" font-size="12" font-weight="700" fill="#64748b">STRUCTURE</text>
+  <rect x="382" y="352" width="112" height="28" rx="7" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="438" y="371" font-size="12" fill="#9a3412" text-anchor="middle">pass_driver</text>
+  <rect x="504" y="352" width="146" height="28" rx="7" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text x="577" y="371" font-size="12" fill="#6d28d9" text-anchor="middle">source_follower</text>
+  <rect x="660" y="352" width="92" height="28" rx="7" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="706" y="371" font-size="12" fill="#1d4ed8" text-anchor="middle">common-drain</text>
+
+  <text x="382" y="414" font-size="12" font-weight="700" fill="#64748b">EVIDENCE</text>
+  <rect x="382" y="428" width="488" height="82" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="398" y="452" font-size="12.5" fill="#374151">• source VPASS is the gate net of a pass device</text>
+  <text x="398" y="474" font-size="12.5" fill="#374151">• drain is at AVSS; source drives the pass gate</text>
+  <text x="398" y="496" font-size="12.5" fill="#374151">• gate VERR is the high-impedance driver input</text>
+
+  <rect x="382" y="528" width="226" height="40" rx="9" fill="#0f9d8a"/>
+  <text x="495" y="553" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">accept</text>
+  <rect x="620" y="528" width="118" height="40" rx="9" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="679" y="553" font-size="13" font-weight="600" fill="#9a3412" text-anchor="middle">correct</text>
+  <rect x="750" y="528" width="120" height="40" rx="9" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="810" y="553" font-size="13" font-weight="600" fill="#475569" text-anchor="middle">ambiguous</text>
+
+  <!-- right rail -->
+  <rect x="920" y="94" width="248" height="500" rx="14" fill="#ffffff" stroke="#dde5f0" filter="url(#cardShadow)"/>
+  <text x="942" y="128" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.2">SIGNALS</text>
+  <text x="942" y="164" font-size="15" font-weight="700" fill="#111827">confidence</text>
+  <rect x="942" y="178" width="196" height="9" rx="4" fill="#e2e8f0"/>
+  <rect x="942" y="178" width="142" height="9" rx="4" fill="#2f6fed"/>
+  <text x="942" y="204" font-size="12" fill="#64748b">0.72 · review=auto</text>
+
+  <text x="942" y="240" font-size="15" font-weight="700" fill="#111827">margin</text>
+  <rect x="942" y="254" width="196" height="9" rx="4" fill="#e2e8f0"/>
+  <rect x="942" y="254" width="74" height="9" rx="4" fill="#d97706"/>
+  <text x="942" y="280" font-size="12" fill="#64748b">0.37 vs next role</text>
+
+  <text x="942" y="318" font-size="12" font-weight="700" fill="#64748b">WHY THIS VIEW</text>
+  <text x="942" y="342" font-size="12" fill="#374151">尺寸、端子、role、evidence</text>
+  <text x="942" y="362" font-size="12" fill="#374151">放在同一卡片里，</text>
+  <text x="942" y="382" font-size="12" fill="#374151">不用来回翻网表。</text>
+
+  <rect x="942" y="408" width="196" height="1" fill="#e2e8f0"/>
+  <text x="942" y="438" font-size="12" font-weight="700" fill="#64748b">COVERAGE</text>
+  <text x="942" y="464" font-size="13" fill="#111827">LDO MOS <tspan font-weight="700" fill="#0f9d8a">41/41</tspan></text>
+  <text x="942" y="488" font-size="13" fill="#111827">OTA items <tspan font-weight="700" fill="#0f9d8a">26/26</tspan></text>
+  <text x="942" y="512" font-size="13" fill="#111827">Gold items <tspan font-weight="700" fill="#0f9d8a">58/58</tspan></text>
+  <text x="942" y="536" font-size="13" fill="#111827">Tests <tspan font-weight="700" fill="#0f9d8a">41</tspan></text>
+  <text x="942" y="570" font-size="11" fill="#94a3b8">UI concept · review packet</text>
+
+  <!-- footer -->
+  <rect x="356" y="612" width="812" height="112" rx="12" fill="#0f172a"/>
+  <text x="380" y="642" font-size="12" font-weight="700" fill="#94a3b8">FROM MESSAGE TO EVIDENCE</text>
+  <text x="380" y="670" font-size="15" fill="#e5e7eb">“这个管子是干什么的？” → role + match + group + evidence</text>
+  <text x="380" y="696" font-size="12" fill="#94a3b8">原始名字保留 · 源网表只读 · 不确定项进入 review</text>
+  <rect x="1010" y="640" width="134" height="30" rx="15" fill="#123b33" stroke="#1f6f5f"/>
+  <text x="1077" y="660" font-size="12" fill="#6ee7b7" text-anchor="middle">v0.2.0 demo</text>
+</svg>
