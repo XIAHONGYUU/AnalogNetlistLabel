@@ -9,6 +9,7 @@
 - 真实输入是大型 .sp（top + 很多 subckt），不是单个 flat cell；
 - 目标链路：top 接口 → subckt/cell 分解 → leaf annotation → 跨层聚合；
 - v0.2 先完成 leaf-cell annotation；full-netlist / subckt selection / 后仿真 / 混合信号 / logic 是后续阶段。
+- 顶层价值：开源模拟网表 ↔ AI 的语义接口；可延伸到 PERC-like 检查、整体版图检查、AI 驱动网表修改。
 
 ### 核心
 

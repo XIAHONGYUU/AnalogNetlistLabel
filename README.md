@@ -56,6 +56,21 @@
 
 详见 [docs/vision.md](docs/vision.md)。
 
+## 为什么重要：四个下游方向
+
+如果语义层走通，它不只是“标注报告”，而是 **AI 进入开源模拟素材库的接口**。公开网表通常没有 GUI，只有大 .sp；AI 能理解之后，很多事才有基础。
+
+<img src="docs/assets/applications.svg" alt="Why netlist semantics matter" width="100%">
+
+| 方向 | 现在能做什么 | 之后可以延伸 |
+| --- | --- | --- |
+| 开源素材库 ↔ AI | 给 leaf cell 建立语义索引 | 全库搜索、比较、问答、按结构检索 |
+| PERC-like 检查 | 规则提案 + 人工 review | 浮空 gate、bias 缺失、drive 冲突、body/well、GUI 低级错误 |
+| 整体版图检查 | hierarchy + role + match 上下文 | 分组、对称、bias 走线、镜像/匹配检查 |
+| AI 驱动网表修改 | 只读分析 | 语义上下文中的 repair / 修改 / 再验证，接近 “vibe analog” |
+
+边界要说清楚：**现在只做只读标注和规则提案**，不是 PERC/DRC/LVS 的签核替代，也不是自动改网表。先把 leaf-cell 语义做对，再谈 full-netlist、layout review 和 closed-loop edit。
+
 ## 新老网表对比
 
 | | 老网表 | 新网表 / overlay |

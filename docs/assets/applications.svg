@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="Noto Sans CJK SC, Noto Sans, Segoe UI, sans-serif">
+  <defs>
+    <filter id="sh" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#f5f7fb"/>
+  <circle cx="1110" cy="70" r="140" fill="#e8efff" opacity="0.65"/>
+  <circle cx="90" cy="660" r="110" fill="#e7f7f3" opacity="0.65"/>
+
+  <text x="44" y="62" font-size="36" font-weight="700" fill="#0f172a">为什么值得做</text>
+  <text x="44" y="94" font-size="18" fill="#475569">开源模拟网表是最大的公开素材库之一，但它没有 GUI；语义层是 AI 进入这个素材库的接口。</text>
+  <rect x="44" y="110" width="196" height="28" rx="14" fill="#e8efff" stroke="#c7d7ff"/>
+  <text x="58" y="129" font-size="12.5" font-weight="600" fill="#2563eb">netlist → semantics → AI</text>
+
+  <!-- 01 -->
+  <rect x="44" y="190" width="300" height="150" rx="14" fill="#ffffff" stroke="#dfe5f0" filter="url(#sh)"/>
+  <text x="66" y="218" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.1">01 / CORPUS</text>
+  <text x="66" y="246" font-size="19" font-weight="700" fill="#0f172a">开源素材库 ↔ AI</text>
+  <text x="66" y="270" font-size="12.5" fill="#475569">公开网表只有大 .sp，没有 GUI；</text>
+  <text x="66" y="290" font-size="12.5" fill="#475569">语义索引让模型能搜索、比较、理解。</text>
+  <rect x="66" y="306" width="256" height="18" rx="5" fill="#eff6ff"/>
+  <text x="76" y="319" font-size="10.5" fill="#1d4ed8">semantic index · retrieval · Q&amp;A</text>
+
+  <!-- 02 -->
+  <rect x="856" y="190" width="300" height="150" rx="14" fill="#ffffff" stroke="#dfe5f0" filter="url(#sh)"/>
+  <text x="878" y="218" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.1">02 / CHECK</text>
+  <text x="878" y="246" font-size="19" font-weight="700" fill="#0f172a">PERC-like 检查</text>
+  <text x="878" y="270" font-size="12.5" fill="#475569">浮空 gate / bias 缺失 / drive 冲突</text>
+  <text x="878" y="290" font-size="12.5" fill="#475569">body/well 连接 / GUI 低级错误</text>
+  <rect x="878" y="306" width="256" height="18" rx="5" fill="#fff7ed"/>
+  <text x="888" y="319" font-size="10.5" fill="#9a3412">rule proposals + human review</text>
+
+  <!-- 03 -->
+  <rect x="44" y="392" width="300" height="150" rx="14" fill="#ffffff" stroke="#dfe5f0" filter="url(#sh)"/>
+  <text x="66" y="420" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.1">03 / LAYOUT</text>
+  <text x="66" y="448" font-size="19" font-weight="700" fill="#0f172a">整体版图检查</text>
+  <text x="66" y="472" font-size="12" fill="#475569">hierarchy + role + match group</text>
+  <text x="66" y="492" font-size="12" fill="#475569">检查分组、对称、bias 走线和镜像</text>
+  <rect x="66" y="508" width="256" height="18" rx="5" fill="#e7f7f3"/>
+  <text x="76" y="521" font-size="10.5" fill="#0f766e">layout review · not DRC/LVS</text>
+
+  <!-- 04 -->
+  <rect x="856" y="392" width="300" height="150" rx="14" fill="#ffffff" stroke="#dfe5f0" filter="url(#sh)"/>
+  <text x="878" y="420" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.1">04 / EDIT</text>
+  <text x="878" y="448" font-size="19" font-weight="700" fill="#0f172a">AI 驱动网表修改</text>
+  <text x="878" y="472" font-size="12" fill="#475569">像 vibe coding 一样，用语义上下文</text>
+  <text x="878" y="492" font-size="12" fill="#475569">改网表、repair，再跑验证</text>
+  <rect x="878" y="508" width="256" height="18" rx="5" fill="#f5f3ff"/>
+  <text x="888" y="521" font-size="10.5" fill="#6d28d9">read-only now · assisted edit later</text>
+
+  <!-- center hub -->
+  <rect x="416" y="240" width="368" height="252" rx="18" fill="#0f172a" filter="url(#sh)"/>
+  <text x="600" y="276" font-size="12" font-weight="700" fill="#93c5fd" text-anchor="middle" letter-spacing="1.2">SEMANTIC LAYER</text>
+  <text x="600" y="312" font-size="25" font-weight="700" fill="#ffffff" text-anchor="middle">先让 AI 看懂网表</text>
+  <text x="600" y="340" font-size="13" fill="#cbd5e1" text-anchor="middle">ports · devices · nets · blocks</text>
+  <text x="600" y="362" font-size="13" fill="#cbd5e1" text-anchor="middle">match · evidence · confidence · review</text>
+  <rect x="468" y="386" width="264" height="30" rx="15" fill="#123b33" stroke="#1f6f5f"/>
+  <text x="600" y="406" font-size="12" fill="#6ee7b7" text-anchor="middle">top → subckt → leaf → aggregate</text>
+  <text x="600" y="456" font-size="11.5" fill="#94a3b8" text-anchor="middle">source read-only · human in the loop</text>
+
+  <!-- connectors -->
+  <path d="M344 265 L416 300" stroke="#2563eb" stroke-width="2" marker-end="url(#ar)"/>
+  <path d="M856 265 L784 300" stroke="#2563eb" stroke-width="2" marker-end="url(#ar)"/>
+  <path d="M344 467 L416 432" stroke="#2563eb" stroke-width="2" marker-end="url(#ar)"/>
+  <path d="M856 467 L784 432" stroke="#2563eb" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- bottom -->
+  <rect x="44" y="584" width="1112" height="96" rx="14" fill="#ffffff" stroke="#dfe5f0" filter="url(#sh)"/>
+  <text x="66" y="612" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.1">HONEST SCOPE</text>
+  <text x="66" y="638" font-size="14" fill="#0f172a">现在：只读标注 + 证据 + review；不是 PERC/DRC/LVS 替代品，也不是自动改网表。</text>
+  <text x="66" y="660" font-size="12" fill="#64748b">先把 leaf-cell 语义做对，再谈 full-netlist、layout review 和 closed-loop edit。</text>
+</svg>
